@@ -14,13 +14,25 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".VehicleFredBestemanActivity"
+            android:name="com.project5.vehiclefredbesteman.VehicleFredBestemanActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".OptionsMenuActivity"
+            android:label="@string/title_activity_options_menu" >
+        </activity>
+        <activity
+            android:name=".DetailsActivity"
+            android:label="@string/title_activity_details" >
+        </activity>
+        <activity
+            android:name=".DetailActivity"
+            android:label="@string/title_activity_detail" >
         </activity>
     </application>
 

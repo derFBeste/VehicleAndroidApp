@@ -27,8 +27,12 @@
             android:label="@string/title_activity_options_menu" >
         </activity>
         <activity
-            android:name=".DetailsActivity"
-            android:label="@string/title_activity_details" >
+            android:name=".DetailActivity"
+            android:label="Detail" >
+        </activity>
+        <activity
+            android:name=".AboutActivity"
+            android:label="About" >
         </activity>
     </application>
 

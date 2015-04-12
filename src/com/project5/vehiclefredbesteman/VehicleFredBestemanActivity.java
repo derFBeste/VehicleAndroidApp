@@ -1,12 +1,16 @@
 package com.project5.vehiclefredbesteman;
 
+import java.util.ArrayList;
+
 import com.example.vehiclefredbesteman.AboutActivity;
 import com.example.vehiclefredbesteman.DetailActivity;
+import com.example.vehiclefredbesteman.Mileage;
 import com.example.vehiclefredbesteman.MileageDB;
 import com.example.vehiclefredbesteman.R;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -14,6 +18,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 
 public class VehicleFredBestemanActivity extends Activity {
 
@@ -28,6 +33,20 @@ public class VehicleFredBestemanActivity extends Activity {
 		
 		db = new MileageDB(this);
 		
+		//An ArrayList of movies
+		ArrayList<Mileage> allRecords = db.getMileageRecords();
+		
+		for(Mileage m : allRecords)
+			Log.d(TAG, "Yo!");
+		
+		listMileage = (ListView) findViewById(R.id.listMileage);
+		Cursor cursor = db.getMileageAsCursor();
+		
+		SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, 
+				R.layout.list_entry4,
+				cursor,
+				new String[] {"date", "price", "gallons", "miles"},
+				new int[]{R.id.date_entry, R.id.price_entry, R.id.gallon_entry, R.id.mile_entry});
 		
 	}
 	

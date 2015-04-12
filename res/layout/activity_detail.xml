@@ -38,7 +38,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/date_entry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -51,10 +51,10 @@
         android:id="@+id/editPrice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView1"
-        android:layout_alignBottom="@+id/textView1"
+        android:layout_alignBaseline="@+id/date_entry"
+        android:layout_alignBottom="@+id/date_entry"
         android:layout_marginRight="20dp"
-        android:layout_toRightOf="@+id/textView1"
+        android:layout_toRightOf="@+id/date_entry"
         android:ems="10" >
 
         <requestFocus />
@@ -64,7 +64,7 @@
         android:id="@+id/editGallons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
+        android:layout_alignLeft="@+id/date_entry"
         android:layout_below="@+id/editPrice"
         android:layout_marginTop="10dp"
         android:layout_toLeftOf="@+id/gallonsLabel"

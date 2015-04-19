@@ -13,13 +13,18 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.SimpleCursorAdapter.ViewBinder;
 import android.widget.TextView;
 
@@ -28,20 +33,14 @@ public class VehicleFredBestemanActivity extends Activity {
 	private static final String TAG = "*** FB ***";
 	ListView listMileage;
 	MileageDB db;
+	ArrayAdapter<Mileage> adapterContextMenu;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_vehicle_fred_besteman);
-		
+				
 		db = new MileageDB(this);
-		
-		//adding movies for testing
-//		Mileage mileage = new Mileage(1, "Monday", 15.29, 6.6, 162.0);
-//		long id = db.insertMileageAutoId(mileage);
-//		id = db.insertMileageAutoId(new Mileage(2, "Tuesday", 99.99, 8.5, 525.0));
-//		id = db.insertMileageAutoId(new Mileage(3, "Friday", 8.99, 10.1, 343.5));
-		
 		
 		
 		//An ArrayList of movies
@@ -51,6 +50,13 @@ public class VehicleFredBestemanActivity extends Activity {
 			Log.d(TAG, String.format("%s, %f, %f, %f", m.getDate(), m.getPrice(), m.getGallons(), m.getMiles()));
 		
 		listMileage = (ListView) findViewById(R.id.listMileage);
+		
+		//registers context menu to listMileage
+		registerForContextMenu(listMileage);
+		
+		adapterContextMenu = new ArrayAdapter<Mileage>(this, android.R.layout.simple_list_item_1);
+		listMileage.setAdapter(adapterContextMenu);
+		
 		Cursor cursor = db.getMileageAsCursor();
 		
 		SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, 
@@ -99,9 +105,10 @@ public class VehicleFredBestemanActivity extends Activity {
 //		
 //	}
 //	
-//	public void onResume(){
-//		
-//	}
+	public void onResume(){
+		super.onResume();
+		adapterContextMenu.notifyDataSetChanged();
+	}
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -128,6 +135,25 @@ public class VehicleFredBestemanActivity extends Activity {
 		}
 	}	
 	
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View view, ContextMenuInfo menuInfo){
+		getMenuInflater().inflate(R.menu.list_context, menu);
+	}
+	
+	@Override
+	public boolean onContextItemSelected(MenuItem item){
+		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
+		int position = info.position;
+		//Mileage selectedItem = adapterContextMenu.getItem(position);
+		
+		switch(item.getItemId()){
+		case R.id.delete:
+			Log.d(TAG, "delete item");
+			//adapterContextMenu.notifyDataSetChanged();
+			return true;
+		}
+		return super.onContextItemSelected(item);
+	}
 	
 	
 }

@@ -101,12 +101,11 @@ public class DetailActivity extends Activity{
 	class DateButtonListener implements OnClickListener{
 		@Override
 		public void onClick(View v){
-			//add logic to send to db
-			long id = mileage.generateId();
-			mileage.setId(id);
+//			long id = mileage.generateId();
+//			mileage.setId(id);
 			Log.d(TAG, mileage.toString());
-			db.insertMileage(mileage);
-			//long id = db.insertMileageAutoId(mileage);
+			//db.insertMileageAutoId(mileage);
+			long id = db.insertMileageAutoId(mileage);
 		}
 		
 	}

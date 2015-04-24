@@ -39,9 +39,9 @@ public class VehicleFredBestemanActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_vehicle_fred_besteman);
-				
-		db = new MileageDB(this);
 		
+		
+		db = new MileageDB(this);
 		
 		//An ArrayList of movies
 		ArrayList<Mileage> allRecords = db.getMileageRecords();
@@ -129,6 +129,7 @@ public class VehicleFredBestemanActivity extends Activity {
 			return true;
 		case R.id.reset:
 			Log.d(TAG, "Reset menu");
+			db.resetMileageDB();
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);

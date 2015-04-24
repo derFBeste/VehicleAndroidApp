@@ -196,4 +196,9 @@ public class MileageDB {
 		}
 	}
 	
+	public void resetMileageDB(){
+		db.execSQL(MileageDB.DROP_MILEAGE_TABLE);
+		db.execSQL(CREATE_MILEAGE_TABLE);
+	}
+	
 }//end class MileageDB
